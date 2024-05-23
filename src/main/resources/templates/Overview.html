@@ -5,73 +5,73 @@
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
     <title></title>
 </head>
 <body>
 <div id="app">
     <v-app>
-
+        <v-toolbar class="bg-blue-grey-darken-1" density="comfortable">
+            <v-toolbar-title>ChatHub</v-toolbar-title>
+            <v-toolbar-items>
+                <v-btn>Home</v-btn>
+                <v-btn>Mein Konto</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
 
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
                 <div class="text-h3 font-weight-light mt-10">
                     Aktuell aktive Chatrooms
                     <div class="d-flex justify-center">
-                        <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black"
-                                   style="max-width: 30%"></v-divider>
+                        <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black" style="max-width: 30%"></v-divider>
                     </div>
-                    <!-- Ändere hier unbedingt action="" für die Suche. -->
-                    <form method="post" action="/after-search-method">
-                        <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
-                    </form>
+                    <v-text-field min-width="30vw" label="Chatroom Search"></v-text-field>
                 </div>
             </div>
         </v-container>
 
         <v-container class="d-flex justify-center flex-wrap ga-10 mt-10">
-
-            <form method="post" action="/after-server-click" th:each="tmp:${ChatServer}">
-                <!--
-                Eine v-card repräsentiert einen Server.
-                Wenn du eine For-Schleife machst, um alle Chatrooms anzuzeigen, musst du für jeden Raum eine v-card erstellen.
-                -->
-                <v-card max-width="400" min-width="400">
-                    <v-card-title class="d-flex">
-                        <span th:text="${tmp.name}"></span>
-                        <!-- Hier kommt der Name des Chatrooms rein (Den unteren Text kannst du mit Code ersetzen bzw. rauslöschen. -->
-                        <v-spacer></v-spacer>
-
-                        <!--
-                          Der Chip soll sagen, welches Thema im Chat läuft (Welches beim Erstellen des Chatrooms angegeben wurde).
-                          Wenn du willst (nicht zwingend notwendig), kannst du auch die Farbe mithilfe color="" ändern.
-                          Hier sind alle verfügbaren Farben: https://vuetifyjs.com/en/styles/colors/#material-colors
-                         -->
-                        <v-chip color="grey-blue-darken-2" variant="tonal">
-                            <span th:text="${tmp.shorty}"></span>
-                        </v-chip>
-
-                    </v-card-title>
-                    <v-divider></v-divider>
-                    <v-card-text class="mt-2">
-                        <!-- Das ist eine Beschreibung des Chatrooms, welches beim Erstellen des Rooms angegeben wurde.  -->
-                        <span th:text="${tmp.description}"></span>
-                    </v-card-text>
-                    <v-card-item class="d-flex justify-end">
-                        <!-- Zum Beitreten des Servers, nutze diesen Button. Einfach den Link in href="" ändern, mehr ist nicht zu machen -->
-                        <v-btn href="https://www.google.at" variant="outlined">
-                            Join Server
-                        </v-btn>
-                    </v-card-item>
-                </v-card>
-            </form>
+            <div th:each="tmp : ${ChatServer}">
+                <form method="post" action="/after-server-click">
+                    <input type="hidden" name="server_id" th:value="${tmp.server_id}">
+                    <v-card max-width="400" min-width="400" style="flex: 1 0 21%">
+                        <v-card-title class="d-flex">
+                            <span th:text="${tmp.name}">Name</span>
+                            <v-spacer></v-spacer>
+                            <v-icon th:if="${tmp.password} != ''">mdi-lock-outline</v-icon>
+                            &nbsp;
+                            <v-chip color="red" variant="tonal">
+                                <span th:text="${tmp.shorty}">Shorty</span>
+                            </v-chip>
+                        </v-card-title>
+                        <v-divider></v-divider>
+                        <v-card-text class="mt-2">
+                            <span th:text="${tmp.description}">Beschreibung</span>
+                        </v-card-text>
+                        <v-card-actions>
+                            <v-row align="center">
+                                <v-col cols="7" >
+                                    <v-text-field label="Password" variant="underlined" name="password" th:if="${tmp.password} != ''"></v-text-field>
+                                </v-col>
+                                <v-col cols="5" class="d-flex align-center">
+                                    <v-btn variant="outlined" type="submit">
+                                        Join Server
+                                    </v-btn>
+                                </v-col>
+                            </v-row>
+                        </v-card-actions>
+                    </v-card>
+                </form>
+            </div>
         </v-container>
     </v-app>
 </div>
 </body>
 
 <script>
-    const {createApp} = Vue
-    const {createVuetify} = Vuetify
+    const { createApp } = Vue
+    const { createVuetify } = Vuetify
 
     const vuetify = createVuetify()
 

@@ -1,18 +1,28 @@
 package chathub;
 
 public class ChatServer {
+    String server_id;
     String name;
     String description;
     String shorty;
     String password;
     String admin_id;
 
-    public ChatServer(String name, String description, String shorty, String password, String admin_id) {
+    public ChatServer(String server_id,String name, String description, String shorty, String password, String admin_id) {
+        this.server_id = server_id;
         this.name = name;
         this.description = description;
         this.shorty = shorty;
         this.admin_id = admin_id;
         this.password = password;
+    }
+
+    public String getServer_id() {
+        return server_id;
+    }
+
+    public void setServer_id(String server_id) {
+        this.server_id = server_id;
     }
 
     public String getPassword() {
@@ -58,7 +68,8 @@ public class ChatServer {
     @Override
     public String toString() {
         return "ChatServer{" +
-                "name='" + name + '\'' +
+                "server_id='" + server_id + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", shorty='" + shorty + '\'' +
                 ", password='" + password + '\'' +
