@@ -7,8 +7,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.NoSuchAlgorithmException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -32,6 +30,7 @@ public class Login {
         if (result.next()) {
             model.addAttribute("user", user);
             CustomLogger.logCustomInfo("Ein Benutzer hat sich gerade eingeloggt!");
+            ServerOverview.showChatServer(model);
             return "Overview";
         } else {
             model.addAttribute("wrong", "The username or password is incorrect!");

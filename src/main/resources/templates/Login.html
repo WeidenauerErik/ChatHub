@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="">
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
@@ -10,13 +10,6 @@
 <body>
 <div id="app">
     <v-app>
-        <v-toolbar class="bg-blue-grey-darken-1" density="comfortable">
-            <v-toolbar-title>ChatHub</v-toolbar-title>
-            <v-toolbar-items>
-                <v-btn>Home</v-btn>
-            </v-toolbar-items>
-        </v-toolbar>
-
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
                 <div class="text-h3 font-weight-thin mt-10">
@@ -36,6 +29,7 @@
                         <v-text-field label="Passwort" name="password" type="password" required></v-text-field>
                         <v-btn type="submit" style="min-width: 100%" variant="outlined">Login</v-btn>
                     </form>
+                    <v-text th:text="${wrong}"></v-text>
                 </v-card-item>
             </v-card>
         </v-container>

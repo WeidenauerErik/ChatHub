@@ -47,4 +47,14 @@ public class SQL {
         System.out.println(rowCount);
         return rowCount;
     }
+
+    public static ResultSet getAllServer() throws SQLException {
+        Statement stm = connection.createStatement();
+        return stm.executeQuery("SELECT * FROM ChatServer");
+    }
+
+    public static ResultSet getAllChats() throws SQLException {
+        Statement stm = connection.createStatement();
+        return stm.executeQuery("SELECT * FROM Chat");
+    }
 }
