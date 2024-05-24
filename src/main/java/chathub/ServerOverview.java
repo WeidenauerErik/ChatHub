@@ -31,7 +31,9 @@ public class ServerOverview {
 
     @PostMapping("/after-search-method")
     public static String search(@ModelAttribute("input") String input,Model model) {
+        System.out.println("ChatServer_list = " + ChatServer_list);
         Collections.sort(ChatServer_list, Comparator.comparingInt(s  -> StringSearch.levenshteinDistance(input, s.name)));
+        System.out.println("ChatServer_list = " + ChatServer_list);
         model.addAttribute("ChatServer", ChatServer_list);
         return "Overview";
     }

@@ -11,22 +11,17 @@
 <body>
 <div id="app">
     <v-app>
-        <v-toolbar class="bg-blue-grey-darken-1" density="comfortable">
-            <v-toolbar-title>ChatHub</v-toolbar-title>
-            <v-toolbar-items>
-                <v-btn>Home</v-btn>
-                <v-btn>Mein Konto</v-btn>
-            </v-toolbar-items>
-        </v-toolbar>
-
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
                 <div class="text-h3 font-weight-light mt-10">
                     Aktuell aktive Chatrooms
                     <div class="d-flex justify-center">
-                        <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black" style="max-width: 30%"></v-divider>
+                        <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black"
+                                   style="max-width: 30%"></v-divider>
                     </div>
-                    <v-text-field min-width="30vw" label="Chatroom Search"></v-text-field>
+                    <form method="post" action="/after-search-method">
+                        <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
+                    </form>
                 </div>
             </div>
         </v-container>
@@ -51,8 +46,9 @@
                         </v-card-text>
                         <v-card-actions>
                             <v-row align="center">
-                                <v-col cols="7" >
-                                    <v-text-field label="Password" variant="underlined" name="password" th:if="${tmp.password} != ''"></v-text-field>
+                                <v-col cols="7">
+                                    <v-text-field label="Password" variant="underlined" name="password"
+                                                  th:if="${tmp.password} != ''"></v-text-field>
                                 </v-col>
                                 <v-col cols="5" class="d-flex align-center">
                                     <v-btn variant="outlined" type="submit">
@@ -70,8 +66,8 @@
 </body>
 
 <script>
-    const { createApp } = Vue
-    const { createVuetify } = Vuetify
+    const {createApp} = Vue
+    const {createVuetify} = Vuetify
 
     const vuetify = createVuetify()
 

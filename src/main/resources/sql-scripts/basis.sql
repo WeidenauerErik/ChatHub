@@ -15,9 +15,9 @@ CREATE TABLE ChatServer
  CREATE TABLE Chat
  (
      chat_id INT AUTO_INCREMENT PRIMARY KEY,
-     name VARCHAR(100) NOT NULL,
-     password VARCHAR(100) NOT NULL,
+     message VARCHAR(100) NOT NULL,
      owner VARCHAR(100) NOT NULL,
+     date DATE NOT NULL,
      server_id INT NOT NULL
  );
 

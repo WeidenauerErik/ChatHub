@@ -35,19 +35,6 @@ public class SQL {
         }
     }
 
-
-    public static int getNextIndex() throws SQLException {
-        ResultSet result = getAllUser();
-        int rowCount = 0;
-        if (result != null) {
-            result.last();
-            rowCount = result.getRow();
-            result.beforeFirst();
-        }
-        System.out.println(rowCount);
-        return rowCount;
-    }
-
     public static ResultSet getAllServer() throws SQLException {
         Statement stm = connection.createStatement();
         return stm.executeQuery("SELECT * FROM ChatServer");
