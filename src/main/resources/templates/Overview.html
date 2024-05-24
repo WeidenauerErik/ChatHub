@@ -48,7 +48,7 @@
                             <v-row align="center">
                                 <v-col cols="7">
                                     <v-text-field label="Password" variant="underlined" name="password"
-                                                  th:if="${tmp.password} != ''"></v-text-field>
+                                                  th:if="${tmp.password} != ''" required></v-text-field>
                                 </v-col>
                                 <v-col cols="5" class="d-flex align-center">
                                     <v-btn variant="outlined" type="submit">

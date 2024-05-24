@@ -29,11 +29,19 @@ public class ServerOverview {
     }
 
     @PostMapping("/after-search-method")
-    public static String search(@ModelAttribute("input") String input,Model model) {
-        System.out.println("ChatServer_list = " + ChatServer_list);
-        Collections.sort(ChatServer_list, Comparator.comparingInt(s  -> StringSearch.levenshteinDistance(input, s.name)));
-        System.out.println("ChatServer_list = " + ChatServer_list);
+    public static String search(@ModelAttribute("input") String input, Model model) {
+        System.out.println("Original ChatServer_list = " + ChatServer_list);
+
+        // Überprüfen, ob ChatServer_list nicht null und nicht leer ist
+        if (ChatServer_list != null && !ChatServer_list.isEmpty()) {
+            Collections.sort(ChatServer_list, Comparator.comparingInt(s -> StringSearch.levenshteinDistance(input, s.name)));
+            System.out.println("Sorted ChatServer_list = " + ChatServer_list);
+        } else {
+            System.out.println("ChatServer_list ist null oder leer");
+        }
+
         model.addAttribute("ChatServer", ChatServer_list);
         return "Overview";
     }
+
 }
