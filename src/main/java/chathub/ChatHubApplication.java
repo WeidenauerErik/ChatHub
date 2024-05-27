@@ -4,6 +4,8 @@ import org.apache.catalina.Server;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -18,5 +20,8 @@ public class ChatHubApplication {
         SQL.getConnection();
     }
 
-
+    @GetMapping("/")
+    public static String landingpage() {
+        return "Landing_Page";
+    }
 }
