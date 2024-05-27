@@ -32,15 +32,13 @@
         <v-container class="d-flex justify-center">
             <v-card max-width="400" min-width="300">
                 <v-card-text>
-                    <form @submit.prevent="handleSubmit">
-                        <v-text-field label="Name" name="name" v-model="form.name" required></v-text-field>
-                        <v-text-field label="Beschreibung" name="description" v-model="form.description" required></v-text-field>
-                        <v-text-field label="Kurzbezeichnung" name="shorty" v-model="form.shorty" required></v-text-field>
-                        <v-text-field :label="'Passwort'" name="password" type="password" :required="isPasswordRequired" v-model="form.password" :disabled="!isPasswordRequired"></v-text-field>
-                        <v-btn @click="togglePasswordField" style="min-width: 100%" outlined>{{ isPasswordRequired ? 'Passwort entfernen' : 'Passwort hinzufügen' }}</v-btn>
+                    <form action="after-new-ChatServer" method="post">
+                        <v-text-field label="Name" name="name" required></v-text-field>
+                        <v-text-field label="Beschreibung" name="description" required></v-text-field>
+                        <v-text-field label="Kurzbezeichnung" name="shorty" required></v-text-field>
+                        <v-text-field label="Passwort" name="password" type="password"></v-text-field>
                         <v-btn type="submit" style="min-width: 100%" outlined>Add New Chat Server</v-btn>
                     </form>
-                    <v-text th:text="${wrong}"></v-text>
                 </v-card-text>
             </v-card>
         </v-container>
@@ -53,27 +51,8 @@
 
     const vuetify = createVuetify()
 
-    createApp({
-        data() {
-            return {
-                isPasswordRequired: false,
-                form: {
-                    name: '',
-                    description: '',
-                    shorty: '',
-                    password: ''
-                }
-            }
-        },
-        methods: {
-            togglePasswordField() {
-                this.isPasswordRequired = !this.isPasswordRequired;
-                if (!this.isPasswordRequired) {
-                    this.form.password = '';
-                }
-            }
-        }
-    }).use(vuetify).mount('#app')
+    const app = createApp({})
+    app.use(vuetify).mount('#app')
 </script>
 </body>
 </html>
