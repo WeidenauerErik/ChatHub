@@ -5,10 +5,6 @@ import java.security.NoSuchAlgorithmException;
 
 public class PasswordEncryptor {
 
-    public static void main(String[] args) throws NoSuchAlgorithmException {
-        System.out.println("encrypt() = " + encrypt(""));
-    }
-
     public static String encrypt(String password) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("SHA-256");
 
