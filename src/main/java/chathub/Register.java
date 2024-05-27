@@ -1,5 +1,6 @@
 package chathub;
 
+import jakarta.servlet.http.HttpSession;
 import org.apache.catalina.Server;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class Register {
     }
 
     @PostMapping("/after-register")
-    public String after_register(@ModelAttribute("user") User newuser, Model model) throws SQLException, NoSuchAlgorithmException {
+    public String after_register(@ModelAttribute("user") User newuser, Model model, HttpSession session) throws SQLException, NoSuchAlgorithmException {
         String password = newuser.getPassword();
         newuser.setPassword(PasswordEncryptor.encrypt(password));
 
@@ -33,6 +34,7 @@ public class Register {
             SQL.newUser(newuser);
             CustomLogger.logCustomInfo("Ein neuer Benutzer hat sich registriert und ist jetzt im Server Overview!");
             ServerOverview.showChatServer(model);
+            session.setAttribute("user", newuser);
             return "Overview";
         }
     }

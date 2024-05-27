@@ -22,7 +22,7 @@ public class SQL {
     }
 
     public static void newUser(User user) throws SQLException {
-        PreparedStatement stm = connection.prepareStatement("INSERT INTO ChatServer (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
+        PreparedStatement stm = connection.prepareStatement("INSERT INTO User (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
         stm.setString(1, user.firstname);
         stm.setString(2, user.surname);
         stm.setString(3, user.username);
