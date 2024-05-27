@@ -26,6 +26,7 @@
             </div>
         </v-container>
 
+
         <v-container class="d-flex justify-center flex-wrap ga-10 mt-10">
             <div th:each="tmp : ${ChatServer}">
                 <form method="post" action="/after-server-click">
@@ -34,9 +35,9 @@
                         <v-card-title class="d-flex">
                             <span th:text="${tmp.name}">Name</span>
                             <v-spacer></v-spacer>
-                            <v-icon th:if="${tmp.password} != ''">mdi-lock-outline</v-icon>
+                            <v-icon th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}">mdi-lock-outline</v-icon>
                             &nbsp;
-                            <v-chip color="red" variant="tonal">
+                            <v-chip color="grey" variant="tonal">
                                 <span th:text="${tmp.shorty}">Shorty</span>
                             </v-chip>
                         </v-card-title>
@@ -48,7 +49,7 @@
                             <v-row align="center">
                                 <v-col cols="7">
                                     <v-text-field label="Password" variant="underlined" name="password"
-                                                  th:if="${tmp.password} != ''" required></v-text-field>
+                                                  th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}" required></v-text-field>
                                 </v-col>
                                 <v-col cols="5" class="d-flex align-center">
                                     <v-btn variant="outlined" type="submit">

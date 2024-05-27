@@ -18,7 +18,7 @@ public class ServerOverview {
         ResultSet result = SQL.getAllServer();
         List<ChatServer> output = new ArrayList<>();
         while (result.next()) {
-            output.add(new ChatServer(result.getString("server_id"),result.getString("name"), result.getString("description"), result.getString("shorty"), result.getString("password"), result.getString("admin_id")));
+            output.add(new ChatServer(result.getString("server_id"), result.getString("name"), result.getString("description"), result.getString("shorty"), result.getString("password"), result.getString("admin_id")));
         }
         ChatServer_list = output;
         return output;
@@ -30,16 +30,7 @@ public class ServerOverview {
 
     @PostMapping("/after-search-method")
     public static String search(@ModelAttribute("input") String input, Model model) {
-        System.out.println("Original ChatServer_list = " + ChatServer_list);
-
-        // Überprüfen, ob ChatServer_list nicht null und nicht leer ist
-        if (ChatServer_list != null && !ChatServer_list.isEmpty()) {
-            Collections.sort(ChatServer_list, Comparator.comparingInt(s -> StringSearch.levenshteinDistance(input, s.name)));
-            System.out.println("Sorted ChatServer_list = " + ChatServer_list);
-        } else {
-            System.out.println("ChatServer_list ist null oder leer");
-        }
-
+        Collections.sort(ChatServer_list, Comparator.comparingInt(s -> StringSearch.levenshteinDistance(input, s.name)));
         model.addAttribute("ChatServer", ChatServer_list);
         return "Overview";
     }

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <title></title>
+  </head>
+  <body>
+  <div id="app">
+    <v-container class="d-flex justify-center">
+      <div class="d-flex justify-center">
+        <div class="text-h4 font-weight-thin mt-10">
+          <!--
+          Hier soll der Name vom Chatroom stehen
+          -->
+          Hier steht der Name vom Chatroom
+          <div class="d-flex justify-center">
+            <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black" style="max-width: 30%"></v-divider>
+          </div>
+        </div>
+      </div>
+    </v-container>
+
+    <v-container class="bg-grey-lighten-3 overflow-y-auto" style="max-width: 50%; min-height: 60vh; max-height: 60vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+      <!--
+      Für jede Nachricht die jemand abschickt, soll ein v-card erstellt werden (wie unten)
+      Im <v-card-title> soll der Name stehen, im <v-card-text> die Nachricht.
+      WICHTIG:  Sollte eine Nachricht von einem anderen kommen, so soll im style tag das hier stehen: "align-self: flex-start";
+                Ist die Nachricht aber von dir selbst, so soll "align-self: flex-end;" stehen.
+      -->
+      <v-card max-width="40%" min-width="40%" min-height="50px" variant="outlined" style="align-self: flex-start; flex-shrink: 0;">
+        <v-card-title>Erik</v-card-title>
+        <v-card-text>Hallo</v-card-text>
+      </v-card>
+
+      <v-card max-width="40%" min-width="40%" min-height="50px" variant="outlined" style="align-self: flex-end; flex-shrink: 0;">
+        <v-card-title>Aleksa</v-card-title>
+        <v-card-text>Hallo zurück!</v-card-text>
+      </v-card>
+    </v-container>
+
+    <!--
+    Hier ist das Textfeld, wo man die Nachricht schreibt.
+    Wie du es dir gewünscht hast, ist auch ein Send-Button neben dem Textfeld dabei.
+    Am Button musst du grundsätzlich nichts ändern, da dieser wie in HTML wie ein submit button fungiert. Er schickt also ganz normal das <form> ab
+
+    Bei Fragen oder Problemen einfach anschreiben
+    -->
+    <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
+      <form action="http://localhost" method="post">
+        <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
+          <template #append>
+            <v-btn icon="mdi-send" type="submit"></v-btn>
+          </template>
+        </v-text-field>
+      </form>
+    </v-container>
+  </div>
+  </body>
+
+  <script>
+    const { createApp } = Vue
+    const { createVuetify } = Vuetify
+
+    const vuetify = createVuetify()
+
+    const app = createApp()
+    app.use(vuetify).mount('#app')
+  </script>
+</html>
