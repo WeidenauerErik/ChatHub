@@ -29,6 +29,7 @@ public class Login {
 
         if (result.next()) {
             model.addAttribute("user", user);
+            NewChatServer.user = user;
             CustomLogger.logCustomInfo("Ein Benutzer hat sich gerade eingeloggt und ist jetzt im Server Overview!");
             ServerOverview.showChatServer(model);
             return "Overview";

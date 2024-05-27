@@ -36,11 +36,6 @@ public class ServerOverview {
         return "Overview";
     }
 
-    @PostMapping("/after-new-ChatServer-btn")
-    public static String newChatServerbtn() {
-        return "NewChatServer";
-    }
-
     @PostMapping("/back-to-register")
     public static String back_to_register() {
         return "Register";

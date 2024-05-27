@@ -22,7 +22,7 @@ public class SQL {
     }
 
     public static void newUser(User user) throws SQLException {
-        PreparedStatement stm = connection.prepareStatement("INSERT INTO User (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
+        PreparedStatement stm = connection.prepareStatement("INSERT INTO ChatServer (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
         stm.setString(1, user.firstname);
         stm.setString(2, user.surname);
         stm.setString(3, user.username);
@@ -42,7 +42,7 @@ public class SQL {
     }
 
     public static void newChatServer(ChatServer newChatServer, String admin_id) throws SQLException {
-        PreparedStatement stm = connection.prepareStatement("INSERT INTO User (name,description,shorty,password,admin_id) VALUES (?, ?, ?, ?, ?)");
+        PreparedStatement stm = connection.prepareStatement("INSERT INTO ChatServer (name,description,shorty,password,admin_id) VALUES (?, ?, ?, ?, ?)");
         stm.setString(1, newChatServer.name);
         stm.setString(2, newChatServer.description);
         stm.setString(3, newChatServer.shorty);
@@ -50,5 +50,22 @@ public class SQL {
         stm.setString(5, admin_id);
         stm.executeUpdate();
         stm.close();
+    }
+
+    public static String getUserIdByFirstname(String firstname) throws SQLException {
+        String query = "SELECT user_id FROM User WHERE firstname = ?";
+        PreparedStatement stm = connection.prepareStatement(query);
+        stm.setString(1, firstname);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            String userId = rs.getString("user_id");
+            rs.close();
+            stm.close();
+            return userId;
+        } else {
+            rs.close();
+            stm.close();
+            throw new SQLException("User not found");
+        }
     }
 }
