@@ -52,10 +52,10 @@ public class SQL {
         stm.close();
     }
 
-    public static String getUserIdByFirstname(String firstname) throws SQLException {
-        String query = "SELECT user_id FROM User WHERE firstname = ?";
+    public static String getUserIdByUsername(String username) throws SQLException {
+        String query = "SELECT user_id FROM User WHERE username = ?";
         PreparedStatement stm = connection.prepareStatement(query);
-        stm.setString(1, firstname);
+        stm.setString(1, username);
         ResultSet rs = stm.executeQuery();
         if (rs.next()) {
             String userId = rs.getString("user_id");

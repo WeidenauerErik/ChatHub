@@ -1,5 +1,6 @@
 package chathub;
 
+import jakarta.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ public class Login {
     }
 
     @PostMapping("/after-login")
-    public String after_register(@ModelAttribute("user") User user, Model model) throws NoSuchAlgorithmException, SQLException {
+    public String after_register(@ModelAttribute("user") User user, Model model, HttpSession session) throws NoSuchAlgorithmException, SQLException {
         String password = user.getPassword();
         user.setPassword(PasswordEncryptor.encrypt(password));
 
@@ -28,8 +29,7 @@ public class Login {
         ResultSet result = SQL.getResult(sql);
 
         if (result.next()) {
-            model.addAttribute("user", user);
-            NewChatServer.user = user;
+            session.setAttribute("user",user);
             CustomLogger.logCustomInfo("Ein Benutzer hat sich gerade eingeloggt und ist jetzt im Server Overview!");
             ServerOverview.showChatServer(model);
             return "Overview";
