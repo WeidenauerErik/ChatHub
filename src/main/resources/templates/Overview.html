@@ -11,6 +11,24 @@
 <body>
 <div id="app">
     <v-app>
+        <v-toolbar class="bg-blue-grey-darken-1" density="comfortable">
+            <v-toolbar-items>
+                <form method="post" action="back-to-register">
+                    <v-btn type="submit">Zurück zum Registrieren</v-btn>
+                </form>
+            </v-toolbar-items>
+            <v-toolbar-items>
+                <form method="post" action="back-to-login">
+                    <v-btn >Zurück zum Login</v-btn>
+                </form>
+            </v-toolbar-items>
+            <v-toolbar-items>
+                <form method="post" action="after-new-ChatServer-btn">
+                    <v-btn type="submit">New Chat Server</v-btn>
+                </form>
+            </v-toolbar-items>
+        </v-toolbar>
+
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
                 <div class="text-h3 font-weight-light mt-10">
@@ -35,7 +53,9 @@
                         <v-card-title class="d-flex">
                             <span th:text="${tmp.name}">Name</span>
                             <v-spacer></v-spacer>
-                            <v-icon th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}">mdi-lock-outline</v-icon>
+                            <v-icon th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}">
+                                mdi-lock-outline
+                            </v-icon>
                             &nbsp;
                             <v-chip color="grey" variant="tonal">
                                 <span th:text="${tmp.shorty}">Shorty</span>
@@ -49,7 +69,8 @@
                             <v-row align="center">
                                 <v-col cols="7">
                                     <v-text-field label="Password" variant="underlined" name="password"
-                                                  th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}" required></v-text-field>
+                                                  th:if="${tmp.password != 'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855'}"
+                                                  required></v-text-field>
                                 </v-col>
                                 <v-col cols="5" class="d-flex align-center">
                                     <v-btn variant="outlined" type="submit">

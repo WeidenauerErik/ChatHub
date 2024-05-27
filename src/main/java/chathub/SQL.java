@@ -7,7 +7,7 @@ public class SQL {
     public static Connection connection;
 
     public static void getConnection() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chathub","root","");
+        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/chathub", "root", "");
         CustomLogger.logCustomInfo("SQL-Verbindung wurde aufgebaut!");
     }
 
@@ -22,17 +22,13 @@ public class SQL {
     }
 
     public static void newUser(User user) throws SQLException {
-        try {
-            PreparedStatement stm = connection.prepareStatement("INSERT INTO User (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
-            stm.setString(1, user.firstname);
-            stm.setString(2, user.surname);
-            stm.setString(3, user.username);
-            stm.setString(4, user.password);
-            int rowsAffected = stm.executeUpdate();
-            stm.close();
-        } catch (Exception e) {
-            System.out.println(e);
-        }
+        PreparedStatement stm = connection.prepareStatement("INSERT INTO User (firstname, surname, username, password, is_admin) VALUES (?, ?, ?, ?, false)");
+        stm.setString(1, user.firstname);
+        stm.setString(2, user.surname);
+        stm.setString(3, user.username);
+        stm.setString(4, user.password);
+        stm.executeUpdate();
+        stm.close();
     }
 
     public static ResultSet getAllServer() throws SQLException {
@@ -43,5 +39,16 @@ public class SQL {
     public static ResultSet getAllChats() throws SQLException {
         Statement stm = connection.createStatement();
         return stm.executeQuery("SELECT * FROM Chat");
+    }
+
+    public static void newChatServer(ChatServer newChatServer, String admin_id) throws SQLException {
+        PreparedStatement stm = connection.prepareStatement("INSERT INTO User (name,description,shorty,password,admin_id) VALUES (?, ?, ?, ?, ?)");
+        stm.setString(1, newChatServer.name);
+        stm.setString(2, newChatServer.description);
+        stm.setString(3, newChatServer.shorty);
+        stm.setString(4, newChatServer.password);
+        stm.setString(5, admin_id);
+        stm.executeUpdate();
+        stm.close();
     }
 }

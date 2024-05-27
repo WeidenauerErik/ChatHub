@@ -6,13 +6,15 @@ public class Chat {
     String owner;
     String date;
     String server_id;
+    String server_name;
 
-    public Chat(String chat_id, String message, String owner, String date, String server_id) {
+    public Chat(String chat_id, String message, String owner, String date, String server_id, String server_name) {
         this.chat_id = chat_id;
         this.message = message;
         this.owner = owner;
         this.date = date;
         this.server_id = server_id;
+        this.server_name = server_name;
     }
 
     public String getChat_id() {
@@ -53,5 +55,13 @@ public class Chat {
 
     public void setServer_id(String server_id) {
         this.server_id = server_id;
+    }
+
+    public String getServer_name() {
+        return server_name;
+    }
+
+    public void setServer_name(String server_name) {
+        this.server_name = server_name;
     }
 }

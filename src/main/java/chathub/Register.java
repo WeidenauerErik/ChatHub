@@ -31,7 +31,7 @@ public class Register {
             return "Register";
         } else {
             SQL.newUser(newuser);
-            CustomLogger.logCustomInfo("Ein neuer Benutzer hat sich registriert!");
+            CustomLogger.logCustomInfo("Ein neuer Benutzer hat sich registriert und ist jetzt im Server Overview!");
             ServerOverview.showChatServer(model);
             return "Overview";
         }
