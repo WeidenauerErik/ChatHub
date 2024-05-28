@@ -33,11 +33,11 @@
         WICHTIG:  Sollte eine Nachricht von einem anderen kommen, so soll im style tag das hier stehen: "align-self: flex-start";
                   Ist die Nachricht aber von dir selbst, so soll "align-self: flex-end;" stehen.
         -->
-        <v-card th:each="tmp : ${Chats}" min-width="50%" min-height="25px" variant="outlined"
+        <v-card th:each="tmp : ${Chats}" max-width="40%" min-width="20%" min-height="20px" variant="outlined"
                 style="padding: 0;align-self: flex-start; flex-shrink: 0;">
-            <v-card-title th:text="${tmp.owner}" style="font-size: 12px">Erik</v-card-title>
-            <v-card-title th:text="${tmp.date}" style="font-size: 12px">Date</v-card-title>
-            <v-card-text th:text="${tmp.message}" style="font-size: 15px;margin-top: -10px">Hallo</v-card-text>
+            <v-card-title th:text="${tmp.owner}">Erik</v-card-title>
+            <v-card-subtitle th:text="${tmp.date}" style="font-size: 12px;margin-top: -5px">Date</v-card-subtitle>
+            <v-card-text th:text="${tmp.message}" style="font-size: 15px">Hallo</v-card-text>
         </v-card>
 
         <!--
@@ -58,6 +58,11 @@
     <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
         <form action="http://localhost" method="post">
             <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
+                <template #prepend>
+                    <form action="http://localhost" method="get">
+                      <v-btn type="submit" variant="plain" color="red">Leave</v-btn>
+                    </form>
+                </template>
                 <template #append>
                     <v-btn icon="mdi-send" type="submit"></v-btn>
                 </template>
