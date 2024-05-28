@@ -73,12 +73,12 @@
     </v-container>
 
     <v-container class="bg-grey-lighten-3 overflow-y-auto" style="max-width: 50%; min-height: 60vh; max-height: 60vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
-      <v-card max-width="40%" min-width="40%" min-height="50px" variant="outlined" style="align-self: flex-start; flex-shrink: 0;">
+      <v-card max-width="40%" min-width="20%" min-height="20px" variant="outlined" style="align-self: flex-start; flex-shrink: 0;">
         <v-card-title class="mb-0">Erik</v-card-title>
         <v-card-text>Hallo</v-card-text>
       </v-card>
 
-      <v-card max-width="40%" min-width="40%" min-height="50px" variant="outlined" style="align-self: flex-end; flex-shrink: 0;">
+      <v-card max-width="40%" min-width="20%" min-height="20px" variant="outlined" style="align-self: flex-end; flex-shrink: 0;">
         <v-card-title>Aleksa</v-card-title>
         <v-card-text>Hallo zurück!</v-card-text>
       </v-card>
@@ -87,6 +87,11 @@
     <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
       <form action="http://localhost" method="post">
         <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
+          <template #prepend>
+            <form action="http://localhost" method="get">
+              <v-btn type="submit" variant="plain" color="red">Leave</v-btn>
+            </form>
+          </template>
           <template #append>
             <v-btn icon="mdi-send" type="submit"></v-btn>
           </template>
