@@ -1,6 +1,13 @@
 package chathub;
 
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+
+import java.security.NoSuchAlgorithmException;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SQL {
 
@@ -59,6 +66,23 @@ public class SQL {
         ResultSet rs = stm.executeQuery();
         if (rs.next()) {
             String userId = rs.getString("user_id");
+            rs.close();
+            stm.close();
+            return userId;
+        } else {
+            rs.close();
+            stm.close();
+            throw new SQLException("User not found");
+        }
+    }
+
+    public static String getUser_mychatserverByusername(String username) throws SQLException {
+        String query = "SELECT my_chatserver FROM User WHERE username = ?";
+        PreparedStatement stm = connection.prepareStatement(query);
+        stm.setString(1, username);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            String userId = rs.getString("my_chatserver");
             rs.close();
             stm.close();
             return userId;

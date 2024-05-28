@@ -36,13 +36,9 @@ public class ServerOverview {
         return "Overview";
     }
 
-    @PostMapping("/back-to-register")
-    public static String back_to_register() {
-        return "Register";
-    }
-
-    @PostMapping("/back-to-login")
-    public static String back_to_login() {
-        return "Login";
+    @PostMapping("/after-add-a-server")
+    public static String after_add_a_server(Model model) throws SQLException {
+        model.addAttribute("ChatServer", getChatServerIntoList());
+        return "Overview";
     }
 }

@@ -10,6 +10,16 @@ public class User {
     String username;
     String email;
     String password;
+    String my_chatserver;
+
+    public User(String firstname, String surname, String username, String email, String password, String my_chatserver) {
+        this.firstname = firstname;
+        this.surname = surname;
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.my_chatserver = my_chatserver;
+    }
 
     public String getFirstname() {
         return firstname;
@@ -51,22 +61,11 @@ public class User {
         this.password = password;
     }
 
-    public User(String firstname, String surname, String username, String email, String password) throws NoSuchAlgorithmException {
-        this.firstname = firstname;
-        this.surname = surname;
-        this.username = username;
-        this.email = email;
-        this.password = password;
+    public String getMy_chatserver() {
+        return my_chatserver;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "firstname='" + firstname + '\'' +
-                ", surname='" + surname + '\'' +
-                ", username='" + username + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                '}';
+    public void setMy_chatserver(String my_chatserver) {
+        this.my_chatserver = my_chatserver;
     }
 }

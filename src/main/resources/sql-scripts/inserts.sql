@@ -1,9 +1,9 @@
 USE chathub;
 
-INSERT INTO User (firstname, surname, username, password, is_admin)
-VALUES ('Erik', 'Weidenauer', 'EriikDaKing', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 0),
+INSERT INTO User (firstname, surname, username, password, is_admin, my_chatserver)
+VALUES ('Erik', 'Weidenauer', 'EriikDaKing', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 0,'1,2,3'),
        ('admin_firstname', 'admin_surname', 'admin', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3',
-        1);
+        1,'1,2,3');
 
 INSERT INTO ChatServer (name, description, shorty, password, admin_id)
 VALUES ('Klassenraum - 3BI', 'Klassenchat von der 3BI', 'talking',
