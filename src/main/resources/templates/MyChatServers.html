@@ -49,6 +49,12 @@
             </div>
         </v-container>
 
+        <v-container class="d-flex justify-center">
+            <form method="post" action="after-refresh">
+                <v-btn type="submit">Refresh</v-btn>
+            </form>
+        </v-container>
+
         <v-container class="bg-grey-lighten-3 overflow-y-auto"
                      style="max-width: 50%; min-height: 60vh; max-height: 60vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
 
@@ -61,7 +67,7 @@
         </v-container>
 
         <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
-            <form action="http://localhost" method="post">
+            <form action="/after-add-chat" method="post">
                 <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
                     <template #append>
                         <v-btn icon="mdi-send" type="submit"></v-btn>

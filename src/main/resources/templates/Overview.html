@@ -19,15 +19,17 @@
                         <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black"
                                    style="max-width: 30%"></v-divider>
                     </div>
-                    <div>
-                        <form method="post" action="/after-search-method">
-                            <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
-                        </form>
-                        <form method="post" action="after-new-ChatServer-btn">
-                            <v-btn type="submit">New Chat Server</v-btn>
-                        </form>
-                    </div>
                 </div>
+            </div>
+        </v-container>
+        <v-container class="d-flex justify-center">
+            <div style="display: flex; align-items: center;">
+                <form method="post" action="/after-search-method">
+                    <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
+                </form>
+                <form method="post" action="after-new-ChatServer-btn" style="margin-left: 100px;margin-bottom: 20px">
+                    <v-btn type="submit">New Chat Server</v-btn>
+                </form>
             </div>
         </v-container>
 

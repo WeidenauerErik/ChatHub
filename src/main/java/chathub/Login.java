@@ -32,7 +32,6 @@ public class Login {
             session.setAttribute("user",user);
             CustomLogger.logCustomInfo("Ein Benutzer hat sich gerade eingeloggt und ist jetzt im Server Overview!");
             MyServerOverview.getChatServer(model, session);
-            System.out.println("model.getAttribute(\"ChatServer\") = " + model.getAttribute("ChatServer"));
             return "MyChatServers_start";
         } else {
             model.addAttribute("wrong", "The username or password is incorrect!");

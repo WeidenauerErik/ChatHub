@@ -68,4 +68,16 @@ public class User {
     public void setMy_chatserver(String my_chatserver) {
         this.my_chatserver = my_chatserver;
     }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "firstname='" + firstname + '\'' +
+                ", surname='" + surname + '\'' +
+                ", username='" + username + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", my_chatserver='" + my_chatserver + '\'' +
+                '}';
+    }
 }

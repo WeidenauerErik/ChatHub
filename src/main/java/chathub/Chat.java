@@ -64,4 +64,16 @@ public class Chat {
     public void setServer_name(String server_name) {
         this.server_name = server_name;
     }
+
+    @Override
+    public String toString() {
+        return "Chat{" +
+                "chat_id='" + chat_id + '\'' +
+                ", message='" + message + '\'' +
+                ", owner='" + owner + '\'' +
+                ", date='" + date + '\'' +
+                ", server_id='" + server_id + '\'' +
+                ", server_name='" + server_name + '\'' +
+                '}';
+    }
 }
