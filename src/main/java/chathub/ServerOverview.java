@@ -39,6 +39,7 @@ public class ServerOverview {
     @PostMapping("/after-add-a-server")
     public static String after_add_a_server(Model model) throws SQLException {
         model.addAttribute("ChatServer", getChatServerIntoList());
+        CustomLogger.logCustomInfo("Ein Benutzer hat einen neuen Server hinzugefügt!!");
         return "Overview";
     }
 }

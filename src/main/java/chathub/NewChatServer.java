@@ -13,12 +13,14 @@ public class NewChatServer {
 
     @PostMapping("/after-new-ChatServer-btn")
     public static String newChatServerbtn() {
+        CustomLogger.logCustomInfo("Ein Benutzer ist im NewChatServer Bereich!");
         return "NewChatServer";
     }
 
     @PostMapping("back-to-overview")
     public static String back_to_overview(Model model) {
         model.addAttribute("ChatServer", ServerOverview.ChatServer_list);
+        CustomLogger.logCustomInfo("Ein Benutzer ist wieder zurück im Overview!");
         return "Overview";
     }
 
@@ -30,6 +32,7 @@ public class NewChatServer {
         newChatServer.setPassword(PasswordEncryptor.encrypt(newChatServer.getPassword()));
         SQL.newChatServer(newChatServer, SQL.getUserIdByUsername(user.username));
         model.addAttribute("ChatServer", ServerOverview.getChatServerIntoList());
+        CustomLogger.logCustomInfo("Ein neuer Chat Server wurde erstellt!");
         return "Overview";
     }
 }

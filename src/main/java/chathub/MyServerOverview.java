@@ -41,6 +41,7 @@ public class MyServerOverview {
         getChatServer(model,session);
         session.setAttribute("last_server_id",server_id);
         model.addAttribute("last_server_id",server_id);
+        CustomLogger.logCustomInfo("Ein Benutzer ist in einem Chat beigetreten!");
         return "MyChatServers";
     }
     @PostMapping("/after-server-click")
@@ -103,6 +104,7 @@ public class MyServerOverview {
         SQL.add_new_chat(message,((User) session.getAttribute("user")).username,(String) session.getAttribute("last_server_id"));
         getChatServer(model,session);
         model.addAttribute("Chats",getChat_list_from_server_id(getChatIntoList(),(String) session.getAttribute("last_server_id")));
+        CustomLogger.logCustomInfo("Ein Benutzer hat einen Chat hinzugefügt!");
         return "MyChatServers";
     }
 
@@ -110,6 +112,7 @@ public class MyServerOverview {
     public static String after_refresh(Model model, HttpSession session) throws SQLException {
         model.addAttribute("Chats",getChat_list_from_server_id(getChatIntoList(),(String) session.getAttribute("last_server_id")));
         getChatServer(model,session);
+        CustomLogger.logCustomInfo("Ein Benutzer hat die Seite refreshed!");
         return "MyChatServers";
     }
 }
