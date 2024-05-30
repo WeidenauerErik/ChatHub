@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <v-navigation-drawer>
+            <v-list-item title="Deine Chat Server"
+                         subtitle="Hier stehen alle Chat Server in denen du schon mal beigetreten bist."></v-list-item>
+            <v-list-item>
+                <form method="post" action="/after-add-a-server">
+                    <v-btn class="w-100" variant="outlined" type="submit">Add a Server</v-btn>
+                </form>
+            </v-list-item>
+            <v-divider></v-divider>
+            <br>
+            <v-list-item>
+                <v-row class="d-flex justify-space-between align-center">
+                    <v-col cols="auto" th:each="tmp : ${ChatServer}">
+                        <form method="post" action="/after-select-server">
+                            <input type="hidden" name="server_id" th:value="${tmp.server_id}">
+                            <v-btn class="w-100" variant="outlined" type="submit"><span th:text="${tmp.name}">Chat Server Name</span>
+                            </v-btn>
+                        </form>
+                    </v-col>
+                </v-row>
+
+            </v-list-item>
+        </v-navigation-drawer>
+
+        <v-container class="d-flex justify-center">
+            <form method="post" action="after-refresh">
+                <v-btn type="submit">Refresh</v-btn>
+            </form>
+        </v-container>
+
+        <v-container class="bg-grey-lighten-3 overflow-y-auto"
+                     style="max-width: 60%; min-height: 80vh; max-height: 80vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+
+            <v-card th:each="tmp : ${Chats}" max-width="80%" min-width="20%" variant="outlined"
+                    style="align-self: flex-start; flex-shrink: 0;">
+                <div style="display: flex; flex-direction: row;justify-content: space-between">
+                    <v-card-subtitle th:text="${tmp.owner}">Besitzer</v-card-subtitle>
+                    <v-card-subtitle th:text="${tmp.date}">Date</v-card-subtitle>
+                </div>
+                <v-card-text th:text="${tmp.message}" style="margin-top: -18px">Message</v-card-text>
+
+            </v-card>
+
+        </v-container>
+
+        <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
+            <form action="/after-add-chat" method="post">
+                <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
+                    <template #append>
+                        <v-btn icon="mdi-send" type="submit"></v-btn>
+                    </template>
+                </v-text-field>
+            </form>
+        </v-container>
+    </v-app>
+</div>
+</body>
+
+<script>
+    const {createApp} = Vue
+    const {createVuetify} = Vuetify
+
+    const vuetify = createVuetify()
+
+    const app = createApp()
+    app.use(vuetify).mount('#app')
+</script>
+</html>
