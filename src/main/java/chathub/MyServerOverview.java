@@ -39,6 +39,7 @@ public class MyServerOverview {
     public static String select_Server(@ModelAttribute("server_id") String server_id,Model model, HttpSession session) throws SQLException {
         model.addAttribute("Chats",getChat_list_from_server_id(getChatIntoList(),server_id));
         getChatServer(model,session);
+        model.addAttribute("chatroom_name",SQL.getServer_nameByServerId(server_id));
         session.setAttribute("last_server_id",server_id);
         model.addAttribute("last_server_id",server_id);
         CustomLogger.logCustomInfo("Ein Benutzer ist in einem Chat beigetreten!");
@@ -112,6 +113,7 @@ public class MyServerOverview {
     public static String after_refresh(Model model, HttpSession session) throws SQLException {
         model.addAttribute("Chats",getChat_list_from_server_id(getChatIntoList(),(String) session.getAttribute("last_server_id")));
         getChatServer(model,session);
+        model.addAttribute("chatroom_name",SQL.getServer_nameByServerId((String) session.getAttribute("last_server_id")));
         CustomLogger.logCustomInfo("Ein Benutzer hat die Seite refreshed!");
         return "MyChatServers";
     }

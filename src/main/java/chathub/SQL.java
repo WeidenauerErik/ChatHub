@@ -128,4 +128,21 @@ public class SQL {
         stm.executeUpdate();
         stm.close();
     }
+
+    public static String getServer_nameByServerId(String server_id) throws SQLException {
+        String query = "SELECT name FROM ChatServer WHERE server_id = ?";
+        PreparedStatement stm = connection.prepareStatement(query);
+        stm.setString(1, server_id);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            String name = rs.getString("name");
+            rs.close();
+            stm.close();
+            return name;
+        } else {
+            rs.close();
+            stm.close();
+            throw new SQLException("ChatServer not found");
+        }
+    }
 }

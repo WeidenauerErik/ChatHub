@@ -38,9 +38,14 @@
         </v-navigation-drawer>
 
         <v-container class="d-flex justify-center">
-            <form method="post" action="after-refresh">
-                <v-btn type="submit" size="large" variant="plain" icon="mdi-refresh"></v-btn>
-            </form>
+            <div class="d-flex justify-center">
+                <div class="text-h4 font-weight-thin mt-10" style="display: flex;flex-direction: row">
+                    <form method="post" action="after-refresh" style="margin-top: -8px">
+                        <v-btn type="submit" size="large" variant="plain" icon="mdi-refresh"></v-btn>
+                    </form>
+                    <v-title style="padding-left: 200px" th:text="${chatroom_name}">Chatroom Name</v-title>
+                </div>
+            </div>
         </v-container>
 
         <v-container class="bg-grey-lighten-3 overflow-y-auto"
