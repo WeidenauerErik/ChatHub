@@ -38,30 +38,22 @@
         </v-navigation-drawer>
 
         <v-container class="d-flex justify-center">
-            <div class="d-flex justify-center">
-                <div class="text-h4 font-weight-thin mt-10">
-                    Chatroom Name
-                    <div class="d-flex justify-center">
-                        <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black"
-                                   style="max-width: 30%"></v-divider>
-                    </div>
-                </div>
-            </div>
-        </v-container>
-
-        <v-container class="d-flex justify-center">
             <form method="post" action="after-refresh">
-                <v-btn type="submit">Refresh</v-btn>
+                <v-btn type="submit" size="large" variant="plain" icon="mdi-refresh"></v-btn>
             </form>
         </v-container>
 
         <v-container class="bg-grey-lighten-3 overflow-y-auto"
-                     style="max-width: 50%; min-height: 60vh; max-height: 60vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+                     style="max-width: 60%; min-height: 80vh; max-height: 80vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
 
-            <v-card th:each="tmp : ${Chats}" max-width="40%" min-width="40%" min-height="50px" variant="outlined"
+            <v-card th:each="tmp : ${Chats}" max-width="80%" min-width="20%" variant="outlined"
                     style="align-self: flex-start; flex-shrink: 0;">
-                <v-card-subtitle th:text="${tmp.owner}">Besitzer</v-card-subtitle>
-                <v-card-text th:text="${tmp.message}" class="mb-0">Message</v-card-text>
+                <div style="display: flex; flex-direction: row;justify-content: space-between">
+                    <v-card-subtitle th:text="${tmp.owner}">Besitzer</v-card-subtitle>
+                    <v-card-subtitle th:text="${tmp.date}">Date</v-card-subtitle>
+                </div>
+                <v-card-text th:text="${tmp.message}" style="margin-top: -18px">Message</v-card-text>
+
             </v-card>
 
         </v-container>
