@@ -33,8 +33,8 @@ public class Register {
         } else {
             SQL.newUser(newuser);
             CustomLogger.logCustomInfo("Ein neuer Benutzer hat sich registriert und ist jetzt im Server Overview!");
-            MyServerOverview.getChatServer(model, session);
             session.setAttribute("user", newuser);
+            MyServerOverview.getChatServer(model, session);
             return "MyChatServers_start";
         }
     }

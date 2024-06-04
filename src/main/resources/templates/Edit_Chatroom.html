@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+          rel="stylesheet">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <v-container class="d-flex justify-center">
+            <div class="d-flex justify-center">
+                <div class="text-h4 font-weight-thin mt-10" style="display: flex;flex-direction: row">
+                    <v-title style="padding-left: 200px" th:text="${chatroom_name}">Chatroom Name</v-title>
+                </div>
+            </div>
+        </v-container>
+
+        <v-container class="bg-grey-lighten-3 overflow-y-auto"
+                     style="max-width: 60%; min-height: 80vh; max-height: 80vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+
+            <v-card th:each="tmp : ${ChatServer_User}" variant="outlined">
+
+                <v-card-title class="mb-0" th:text="${tmp.username}">username</v-card-title>
+
+                <form action="" method="get" style="position: absolute; top: 5px; right: 10px;">
+                    <input type="hidden" name="username" th:value="${tmp.username}">
+                    <abbr title="Ban">
+                        <v-btn variant="plain" icon="mdi-account-remove" size="small" type="submit"></v-btn>
+                    </abbr>
+                </form>
+            </v-card>
+
+        </v-container>
+    </v-app>
+</div>
+</body>
+
+<script>
+    const {createApp} = Vue
+    const {createVuetify} = Vuetify
+
+    const vuetify = createVuetify()
+
+    const app = createApp()
+    app.use(vuetify).mount('#app')
+</script>
+</html>

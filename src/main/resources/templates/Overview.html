@@ -24,15 +24,24 @@
         </v-container>
         <v-container class="d-flex justify-center">
             <div style="display: flex; align-items: center;">
+                <form method="post" action="after-back-MyChatServers"  style="padding-right: 100px;margin-bottom: 20px">
+                    <v-btn type="submit">Zurück zu deinen Chat Servern</v-btn>
+                </form>
                 <form method="post" action="/after-search-method">
                     <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
                 </form>
                 <form method="post" action="after-new-ChatServer-btn" style="margin-left: 100px;margin-bottom: 20px">
-                    <v-btn type="submit">New Chat Server</v-btn>
+                    <v-btn type="submit">Neuer Chat Server</v-btn>
                 </form>
             </div>
+
         </v-container>
 
+        <v-container class="d-flex justify-center">
+            <div>
+                <span th:text="${wrong_password}"></span>
+            </div>
+        </v-container>
 
         <v-container class="d-flex justify-center flex-wrap ga-10 mt-10">
             <div th:each="tmp : ${ChatServer}">

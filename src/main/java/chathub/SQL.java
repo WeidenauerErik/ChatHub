@@ -145,4 +145,21 @@ public class SQL {
             throw new SQLException("ChatServer not found");
         }
     }
+
+    public static String getAdminIdByServerId(String server_id) throws SQLException {
+        String query = "SELECT admin_id FROM ChatServer WHERE server_id = ?";
+        PreparedStatement stm = connection.prepareStatement(query);
+        stm.setString(1, server_id);
+        ResultSet rs = stm.executeQuery();
+        if (rs.next()) {
+            String name = rs.getString("admin_id");
+            rs.close();
+            stm.close();
+            return name;
+        } else {
+            rs.close();
+            stm.close();
+            throw new SQLException("ChatServer not found");
+        }
+    }
 }

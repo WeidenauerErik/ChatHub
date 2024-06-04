@@ -31,7 +31,7 @@ public class ServerOverview {
     @PostMapping("/after-search-method")
     public static String search(@ModelAttribute("input") String input, Model model) throws SQLException {
         Collections.sort(ChatServer_list, Comparator.comparingInt(s -> StringSearch.levenshteinDistance(input, s.name)));
-        model.addAttribute("ChatServer", getChatServerIntoList());
+        model.addAttribute("ChatServer", ChatServer_list);
         CustomLogger.logCustomInfo("Es hat gerade ein Benutzer die Suchfunktion verwendet!");
         return "Overview";
     }
@@ -41,5 +41,11 @@ public class ServerOverview {
         model.addAttribute("ChatServer", getChatServerIntoList());
         CustomLogger.logCustomInfo("Ein Benutzer hat einen neuen Server hinzugefügt!!");
         return "Overview";
+    }
+
+    @PostMapping("after-back-MyChatServers")
+    public static String after_back_MyChatServer(Model model) throws SQLException {
+        model.addAttribute("ChatServer", getChatServerIntoList());
+        return "MyChatServers_start";
     }
 }
