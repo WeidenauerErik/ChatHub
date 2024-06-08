@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
+    <title>Login</title>
+</head>
+<body>
+<div id="app">
+    <v-app>
+        <v-container class="d-flex justify-center">
+            <div class="d-flex justify-center">
+                <div class="text-h3 font-weight-thin mt-10">
+                    Login
+                    <div class="d-flex justify-center">
+                        <v-divider class="mt-5 mb-7" thickness="2" color="black" style="max-width: 20%"></v-divider>
+                    </div>
+                </div>
+            </div>
+        </v-container>
+
+        <v-container class="d-flex justify-center">
+            <v-card max-width="400" min-width="300">
+                <v-card-text>
+                    <form action="after-login" method="post">
+                        <v-text-field label="Username" name="username" required></v-text-field>
+                        <v-text-field label="Passwort" name="password" type="password" required></v-text-field>
+                        <v-btn type="submit" style="min-width: 100%" outlined>Login</v-btn>
+                    </form>
+                    <v-text th:text="${wrong}"></v-text>
+                </v-card-text>
+            </v-card>
+        </v-container>
+
+        <v-container class="d-flex justify-center">
+            <form action="/register" method="get">
+                <v-btn type="submit">
+                    Zum Registrieren
+                </v-btn>
+            </form>
+        </v-container>
+    </v-app>
+</div>
+
+<script>
+    const { createApp } = Vue
+    const { createVuetify } = Vuetify
+
+    const vuetify = createVuetify()
+
+    const app = createApp({})
+    app.use(vuetify).mount('#app')
+</script>
+</body>
+</html>
