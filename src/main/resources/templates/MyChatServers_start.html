@@ -24,10 +24,15 @@
             <br>
             <v-list-item>
                 <v-row class="d-flex justify-space-between align-center">
-                    <v-col cols="auto" th:each="tmp : ${ChatServer}">
+                    <v-col class="w-100" cols="auto" th:each="tmp : ${ChatServer}">
                         <form method="post" action="/after-select-server">
                         <input type="hidden" name="server_id" th:value="${tmp.server_id}">
-                        <v-btn class="w-100" variant="outlined" type="submit"><span th:text="${tmp.name}">Chat Server Name</span></v-btn>
+                        <v-btn class="w-100 justify-start" variant="outlined" type="submit">
+                            <template #prepend>
+                                <v-icon>mdi-server</v-icon>
+                            </template>
+                            <span th:text="${tmp.name}">Chat Server Name</span>
+                        </v-btn>
                         </form>
                     </v-col>
                     </v-col>
@@ -37,12 +42,12 @@
 
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
-                <div class="text-h4 font-weight-thin mt-10">
-                    <v-title>Chatroom Name</v-title>
+                <div class="mt-10 text-center">
+                    <div class="text-xl-h3 font-weight-thin">Select a room</div>
                     <div class="d-flex justify-center">
                         <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black" style="max-width: 30%"></v-divider>
                     </div>
-                    <div class="text-h5 font-weight-thin font-italic">Select a Chat Server!</div>
+                    <div class="text-h5 font-weight-thin font-italic">Choose a chatroom to join and start to chat!</div>
                 </div>
             </div>
         </v-container>

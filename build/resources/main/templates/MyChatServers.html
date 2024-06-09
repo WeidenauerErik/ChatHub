@@ -25,10 +25,14 @@
             <br>
             <v-list-item>
                 <v-row class="d-flex justify-space-between align-center">
-                    <v-col cols="auto" th:each="tmp : ${ChatServer}">
+                    <v-col class="w-100" cols="auto" th:each="tmp : ${ChatServer}">
                         <form method="post" action="/after-select-server">
                             <input type="hidden" name="server_id" th:value="${tmp.server_id}">
-                            <v-btn class="w-100" variant="outlined" type="submit"><span th:text="${tmp.name}">Chat Server Name</span>
+                            <v-btn class="w-100 justify-start" variant="outlined" type="submit">
+                                <template #prepend>
+                                    <v-icon>mdi-server</v-icon>
+                                </template>
+                                <span th:text="${tmp.name}">Chat Server Name</span>
                             </v-btn>
                         </form>
                     </v-col>
@@ -37,40 +41,42 @@
             </v-list-item>
         </v-navigation-drawer>
 
-        <v-container class="d-flex justify-center">
-            <div class="d-flex justify-center">
-                <div class="text-h4 font-weight-thin mt-10" style="display: flex;flex-direction: row">
-                    <form method="post" action="after-refresh" style="margin-top: -8px">
-                        <v-btn type="submit" size="large" variant="plain" icon="mdi-refresh"></v-btn>
-                    </form>
-                    <v-title style="padding-left: 200px" th:text="${chatroom_name}">Chatroom Name</v-title>
+        <v-container class="d-flex flex-column justify-center" style="min-width: 90vw; margin-left: 10vw">
+            <v-container class="d-flex justify-center">
+                <div class="d-flex justify-center">
+                    <div class="text-h4 font-weight-thin" style="display: flex;flex-direction: row">
+                        <form method="post" action="after-refresh" style="margin-top: -8px">
+                            <v-btn type="submit" size="large" variant="plain" icon="mdi-refresh"></v-btn>
+                        </form>
+                        <div th:text="${chatroom_name}">Chatroom Name</div>
+                    </div>
                 </div>
-            </div>
-        </v-container>
+            </v-container>
 
-        <v-container class="bg-grey-lighten-3 overflow-y-auto"
-                     style="max-width: 60%; min-height: 80vh; max-height: 80vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
+            <v-container class="bg-grey-lighten-3 overflow-y-auto"
+                         style="max-width: 60%; min-height: 80vh; max-height: 80vh; border-radius: 10px; display: flex; flex-direction: column; padding: 10px; gap: 10px;">
 
-            <v-card th:each="tmp : ${Chats}" max-width="80%" min-width="20%" variant="outlined"
-                    style="align-self: flex-start; flex-shrink: 0;">
-                <div style="display: flex; flex-direction: row;justify-content: space-between">
-                    <v-card-subtitle th:text="${tmp.owner}">Besitzer</v-card-subtitle>
-                    <v-card-subtitle th:text="${tmp.date}">Date</v-card-subtitle>
-                </div>
-                <v-card-text th:text="${tmp.message}" style="margin-top: -18px">Message</v-card-text>
+                <v-card th:each="tmp : ${Chats}" max-width="80%" min-width="20%" variant="outlined"
+                        style="align-self: flex-start; flex-shrink: 0;">
+                    <div style="display: flex; flex-direction: row;justify-content: space-between">
+                        <v-card-subtitle th:text="${tmp.owner}">Besitzer</v-card-subtitle>
+                        <v-card-subtitle th:text="${tmp.date}">Date</v-card-subtitle>
+                    </div>
+                    <v-card-text th:text="${tmp.message}" style="margin-top: -18px">Message</v-card-text>
 
-            </v-card>
+                </v-card>
 
-        </v-container>
+            </v-container>
 
-        <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
-            <form action="/after-add-chat" method="post">
-                <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
-                    <template #append>
-                        <v-btn icon="mdi-send" type="submit"></v-btn>
-                    </template>
-                </v-text-field>
-            </form>
+            <v-container style="max-width: 50%; border-radius: 20px; padding: 0" class="mt-5">
+                <form action="/after-add-chat" method="post">
+                    <v-text-field class="input" style="border-radius: 20px" label="Your message here" name="message">
+                        <template #append>
+                            <v-btn icon="mdi-send" type="submit"></v-btn>
+                        </template>
+                    </v-text-field>
+                </form>
+            </v-container>
         </v-container>
     </v-app>
 </div>
