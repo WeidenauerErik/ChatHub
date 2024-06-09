@@ -6,15 +6,31 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.css">
     <script src="https://cdn.jsdelivr.net/npm/vuetify@3.6.6/dist/vuetify.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <style>
+        .floating-alert {
+            position: fixed;
+            top: 80px;
+            right: 10px;
+            z-index: 1000;
+        }
+    </style>
     <title></title>
 </head>
 <body>
 <div id="app">
     <v-app>
+        <v-toolbar class="bg-blue-grey-darken-1" density="comfortable">
+            <v-toolbar-title>ChatHub</v-toolbar-title>
+            <v-toolbar-items>
+                <v-btn href="/">Home</v-btn>
+            </v-toolbar-items>
+        </v-toolbar>
+
         <v-container class="d-flex justify-center">
             <div class="d-flex justify-center">
                 <div class="text-h3 font-weight-light mt-10">
-                    Aktuell aktive Chatrooms
+                    Now active chatrooms
                     <div class="d-flex justify-center">
                         <v-divider class="mt-5 mb-7 border-opacity-25" thickness="2" color="black"
                                    style="max-width: 30%"></v-divider>
@@ -22,32 +38,38 @@
                 </div>
             </div>
         </v-container>
-        <v-container class="d-flex justify-center">
-            <div style="display: flex; align-items: center;">
-                <form method="post" action="after-back-MyChatServers"  style="padding-right: 100px;margin-bottom: 20px">
-                    <v-btn type="submit">Zurück zu deinen Chat Servern</v-btn>
-                </form>
-                <form method="post" action="/after-search-method">
-                    <v-text-field min-width="30vw" label="Chatroom Search" name="input"></v-text-field>
-                </form>
-                <form method="post" action="after-new-ChatServer-btn" style="margin-left: 100px;margin-bottom: 20px">
-                    <v-btn type="submit">Neuer Chat Server</v-btn>
-                </form>
-            </div>
 
+        <v-alert th:v-if="${wrong_password} != null" class="floating-alert" title="Wrong password" th:text="${wrong_password}" type="error" closable></v-alert>
+
+        <v-container class="d-flex justify-center align-center">
+            <form method="post" action="after-back-MyChatServers"  style="padding-right: 100px;margin-bottom: 20px">
+                <v-btn type="submit"><v-icon>mdi-format-list-checkbox</v-icon>&nbsp;&nbsp;Show all joined chatservers</v-btn>
+            </form>
+            <form method="post" action="/after-search-method">
+                <v-text-field min-width="30vw" label="Chatroom Search" name="input">
+                    <template #append>
+                        <v-btn icon="mdi-magnify" type="submit"></v-btn>
+                    </template>
+                </v-text-field>
+            </form>
+            <form method="post" action="after-new-ChatServer-btn" style="margin-left: 100px;margin-bottom: 20px">
+                <v-btn type="submit">Create new chatroom&nbsp;&nbsp;<v-icon>mdi-plus-circle-outline</v-icon></v-btn>
+            </form>
         </v-container>
 
+        <!--
         <v-container class="d-flex justify-center">
             <div>
                 <span th:text="${wrong_password}"></span>
             </div>
         </v-container>
+        -->
 
         <v-container class="d-flex justify-center flex-wrap ga-10 mt-10">
             <div th:each="tmp : ${ChatServer}">
                 <form method="post" action="/after-server-click">
                     <input type="hidden" name="server_id" th:value="${tmp.server_id}">
-                    <v-card max-width="400" min-width="400" style="flex: 1 0 21%">
+                    <v-card max-width="400" min-width="400" max-height="200" min-height="200" style="flex: 1 0 21%">
                         <v-card-title class="d-flex">
                             <span th:text="${tmp.name}">Name</span>
                             <v-spacer></v-spacer>

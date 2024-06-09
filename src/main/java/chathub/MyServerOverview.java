@@ -62,7 +62,7 @@ public class MyServerOverview {
             }
         }
         model.addAttribute("ChatServer", getChatServerIntoList());
-        model.addAttribute("wrong_password", "This was the wrong password!");
+        model.addAttribute("wrong_password", "You entered a wrong password! Please try again.");
         return "Overview";
     }
 
