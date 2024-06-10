@@ -36,7 +36,7 @@
                 <v-card-text>
                     <form action="after-login" method="post">
                         <v-text-field label="Username" name="username" required></v-text-field>
-                        <v-text-field label="Passwort" name="password" type="password" required></v-text-field>
+                        <v-text-field label="Password" name="password" type="password" required></v-text-field>
                         <v-btn type="submit" style="min-width: 100%" outlined>Login</v-btn>
                         <v-alert th:v-if="${wrong} != null" class="mt-4" title="Login failed" th:text="${wrong}" type="error" closable></v-alert>
                     </form>

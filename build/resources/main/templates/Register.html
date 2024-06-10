@@ -25,13 +25,13 @@
             <v-card max-width="400" min-width="300">
                 <v-card-text>
                     <form action="after-register" method="post">
-                        <div class="d-flex gap-5">
-                            <v-text-field label="Vorname" name="firstname" required></v-text-field>
-                            <v-text-field label="Nachname" name="surname" required></v-text-field>
+                        <div class="d-flex ga-3">
+                            <v-text-field label="First name" name="firstname" required></v-text-field>
+                            <v-text-field label="Last name" name="surname" required></v-text-field>
                         </div>
                         <v-text-field label="Username" name="username" required></v-text-field>
                         <v-text-field label="Email Address" name="email" required></v-text-field>
-                        <v-text-field label="Passwort" name="password" type="password" required></v-text-field>
+                        <v-text-field label="Password" name="password" type="password" required></v-text-field>
                         <v-btn type="submit" style="min-width: 100%" outlined>Submit</v-btn>
                     </form>
                     <v-text th:text="${already_registered}"></v-text>
