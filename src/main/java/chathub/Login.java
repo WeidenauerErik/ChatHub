@@ -34,7 +34,7 @@ public class Login {
             MyServerOverview.getChatServer(model, session);
             return "MyChatServers_start";
         } else {
-            model.addAttribute("wrong", "The username or password is incorrect!");
+            model.addAttribute("wrong", "Username or password is incorrect!");
             CustomLogger.logCustomInfo("Es wurde versucht sich einzuloggen!");
             return "Login";
         }
