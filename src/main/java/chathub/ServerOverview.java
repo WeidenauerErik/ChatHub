@@ -25,7 +25,7 @@ public class ServerOverview {
     }
 
     public static void showChatServer(Model model) throws SQLException {
-        model.addAttribute("ChatServer", getChatServerIntoList());
+        model.addAttribute("ChatServer", getChatServerIntoList().stream().distinct());
     }
 
     @PostMapping("/after-search-method")

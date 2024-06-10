@@ -32,8 +32,8 @@ public class MyServerOverview {
                     if (tmp2.equals(tmp1.server_id)) solution.add(tmp1);
                 }
             }
-            ChatServer_list = solution;
-            model.addAttribute("ChatServer", solution);
+            ChatServer_list = solution.parallelStream().distinct().toList();
+            model.addAttribute("ChatServer", ChatServer_list);
         }
     }
 
